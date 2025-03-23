@@ -1,4 +1,4 @@
-import styles from "./JobSection.module.css";
+
 import Pagination from "./Pagination";
 
 export default function JobSection() {
