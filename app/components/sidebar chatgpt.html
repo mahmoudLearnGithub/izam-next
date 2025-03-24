@@ -1,0 +1,58 @@
+export default function Sidebar() {
+
+return (
+<>
+    <aside className="sidebar" id="sidebar">
+        <div className="menu-container">
+            {/* <button className="back-button" onClick={toggleSidebar()}>←</button> */}
+            <button className="back-button">←</button>
+            <span className="menu-text">Menu</span>
+            <div className="icons"><i id="settings-icon" className="icon gear"><svg></svg></i>
+                <div id="boolean-icons" className="hidden"><i id="false-icon" className="icon false-icon"><svg></svg></i><i id="true-icon" className="icon true-icon"><svg></svg></i></div>
+            </div>
+        </div>
+        <ul className="menu">
+            <li className="menu-item toggle-icons">Dashboard</li>
+            <li className="menu-item toggle-icons" id="app_tab">Application<svg></svg></li>
+            <li className="menu-item toggle-icons one">subitm-1</li>
+            <li className="menu-item toggle-icons two">subitm-2</li>
+            <li className="menu-item toggle-icons">Qualifications</li>
+            <li className="menu-item toggle-icons">About</li>
+            <li className="menu-item toggle-icons">Contact</li>
+        </ul>
+    </aside>
+    <aside className="sidebar md-hidden" id="sidebar">
+        <div className="menu-container">
+            {/* <button className="back-button" onClick={toggleSidebar()}>←</button> */}
+            <button className="back-button">←</button>
+            <span className="menu-text">Menu</span>
+            <div className="icons"><i id="settings-icon" className="icon gear"><svg></svg></i>
+                <div id="boolean-icons" className="hidden"><i id="false-icon" className="icon false-icon"><svg></svg></i><i id="true-icon" className="icon true-icon"><svg></svg></i></div>
+            </div>
+        </div>
+        <ul className="menu">
+            <li className="menu-item toggle-icons">Dashboard</li>
+            <li className="spans-container dropdown" id="spans">
+                <div className="dropdown-toggle">
+                    <ul className="application submenu-hidden">
+                        <ul className="application-right"><span className="span2"><svg></svg></span><span className="span3"><svg></svg></span></ul>
+                        <ul className="Sub-item-1-right"><span className="span2"><svg></svg></svg></span></ul>
+                        <ul className="Sub-item-2-right"><span className="span2">
+                            
+                            <svg></svg>
+                        </span><span className="span3"><svg></svg></span></ul>
+                    </ul><span className="tab-text">Application</span><svg></svg>
+                </div>
+                <ul className="submenu hidden">
+                    <li className="menu-item toggle-icons">Sub-item 1</li>
+                    <li className="menu-item toggle-icons">Sub-item 2</li>
+                </ul>
+            </li>
+            <li className="menu-item toggle-icons">Qualifications</li>
+            <li className="menu-item toggle-icons">About</li>
+            <li className="menu-item toggle-icons">Contact</li>
+        </ul>
+    </aside>
+</>
+);
+}

@@ -1,6 +1,12 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { DM_Sans } from "next/font/google";
+import "./globals.css";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import JobSection from "./components/JobSection";
+import Preloader from "./components/Preloader";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -8,49 +14,41 @@ const dmSans = DM_Sans({
   variable: "--font-dm-sans",
 });
 
-import "./globals.css";
-
-// import dynamic from "next/dynamic";
-
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
-import JobSection from "./components/JobSection";
-import Preloader from "./components/Preloader";
-import Script from 'next/script';
-
-import { useTransition } from "react";
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const [isPending, startTransition] = useTransition();
-  // const Preloader = dynamic(() => import("./components/Preloader"), { ssr: false });
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <html lang="en" className={dmSans.variable}>
       <head>
         <title>دفترة - اكتشف فرص العمل المثالية - موقع دفترة للتوظيف</title>
-        <meta name="description"
-          content="اكتشف فرص العمل المثالية وابدأ مسيرتك المهنية الناجحة مع موقع دفترة - الحل الأمثل للتوظيف." />
+        <meta name="description" content="اكتشف فرص العمل المثالية وابدأ مسيرتك المهنية الناجحة مع موقع دفترة - الحل الأمثل للتوظيف." />
         <meta name="keywords" content="وظائف, فرص عمل, التوظيف, مسار مهني, موقع دفترة" />
         <meta charSet="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width,initial-scale=1,width=device-width" />
       </head>
       <body id="white" className="layout">
-        <Preloader />
-        <Navbar />
-        <div className="container">
-          <div className="row">
-            <div className="col-xs-12 col-md-3">
-              <Sidebar />
+        {isLoading ? <Preloader /> : (
+          <>
+            <Navbar />
+            <div className="container">
+              <div className="row">
+                <div className="col-xs-12 col-md-3">
+                  <Sidebar />
+                </div>
+                <div className="col-xs-12 col-md-9">
+                  {children}
+                  <JobSection />
+                </div>
+              </div>
             </div>
-            <div className="col-xs-12 col-md-9">
-                {isPending ? <p className="loading">Loading...</p> : children}
-                <JobSection />
-            </div>
-          </div>
-        </div>
-
-        <Script src="/script.js" strategy="beforeInteractive" />
-
+          </>
+        )}
       </body>
     </html>
   );

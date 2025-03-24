@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 456b9c1 (second commit navbar edition)
 import Pagination from "./Pagination";
 
 export default function JobSection() {
@@ -37,11 +40,11 @@ export default function JobSection() {
 
 
 
-              {/* <div className="bars-container" onClick={toggleSidebar()}>
+              {/* <div className="bars-container" onClick={toggleSidebar}>
                 <div className="bars"></div>
                 <div className="bars"></div>
                 <div className="bars"></div>
-              </div> */}
+              </div>  */}
 
 
               <div className="bars-container">
