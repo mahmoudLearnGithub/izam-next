@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 456b9c1 (second commit navbar edition)
-export default function Sidebar() {
-  
+export default function Sidebar() {  
   return (
     <>
       <aside className="sidebar" id="sidebar">

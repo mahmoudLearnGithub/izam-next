@@ -1,7 +1,7 @@
-<<<<<<< HEAD
+// <<<<<<< HEAD
 
-=======
->>>>>>> 456b9c1 (second commit navbar edition)
+// =======
+// >>>>>>> 456b9c1 (second commit navbar edition)
 import Pagination from "./Pagination";
 
 export default function JobSection() {
