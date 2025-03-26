@@ -1,5 +1,5 @@
 "use client";
-
+import SidebarProvider from "./components/SidebarContext";
 import { useEffect, useState } from "react";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
@@ -36,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {isLoading ? <Preloader /> : (
           <>
             <Navbar />
+            <SidebarProvider>
             <div className="container">
               <div className="row">
                 <div className="col-xs-12 col-md-3">
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </div>
               </div>
             </div>
+            </SidebarProvider>
           </>
         )}
       </body>

@@ -2,10 +2,17 @@
 
 // =======
 // >>>>>>> 456b9c1 (second commit navbar edition)
+"use client";
+import { useContext } from "react";
+import { SidebarContext } from "./SidebarContext";
 import Pagination from "./Pagination";
 
 export default function JobSection() {
+  const { toggleSidebar } = useContext(SidebarContext);
+
   return (
+    <>
+      {/* <Sidebar isActive={isSidebarActive} /> */}
       <div className="left-side-container">
         <div className="left-content">
           <aside className="filter-section xs-hidden">
@@ -40,23 +47,23 @@ export default function JobSection() {
 
 
 
-              {/* <div className="bars-container" onClick={toggleSidebar}>
-                <div className="bars"></div>
-                <div className="bars"></div>
-                <div className="bars"></div>
-              </div>  */}
-
-
-              <div className="bars-container">
+              <div className="bars-container" onClick={toggleSidebar}>
                 <div className="bars"></div>
                 <div className="bars"></div>
                 <div className="bars"></div>
               </div>
 
-
-
-
             </div>
+
+
+
+
+
+
+
+
+
+
 
             <section className="job-description-section">
               <article className="job-card">
@@ -381,5 +388,7 @@ export default function JobSection() {
           <Pagination />
         </div>
       </div>
+    </>
+
   );
 }

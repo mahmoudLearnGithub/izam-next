@@ -1,10 +1,15 @@
-export default function Sidebar() { 
+"use client";
+import { useContext } from "react";
+import { SidebarContext } from "./SidebarContext";
+
+export default function Sidebar() {
+  const { isSidebarActive, toggleSidebar } = useContext(SidebarContext);
+
   return (
     <>
-      <aside className="sidebar" id="sidebar">
+      <aside className={`sidebar ${isSidebarActive ? "active" : ""}`} id="sidebar">
         <div className="menu-container">
-          {/* <button className="back-button" onClick={toggleSidebar()}>←</button> */}
-          <button className="back-button" >←</button>
+          <button className="back-button" onClick={toggleSidebar}>←</button>
 
           <span className="menu-text">Menu</span>
           <div className="icons"><i id="settings-icon" className="icon gear"><svg width="28" height="28"
@@ -158,6 +163,6 @@ export default function Sidebar() {
         </ul>
       </aside >
     </>
-    
+
   );
 }
