@@ -1,7 +1,7 @@
 export default function EndpointsSection() {
   return (
-    <main className={styles.container}>
-      <div className={styles.jobCard}>
+    <main>
+      <div>
         <h2>get </h2>
         <p>post</p>
         <p>track</p>
