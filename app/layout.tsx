@@ -51,6 +51,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </SidebarProvider>
           </>
         )}
+
+        
       </body>
     </html>
   );

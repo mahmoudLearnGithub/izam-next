@@ -12,7 +12,6 @@ export default function JobSection() {
 
   return (
     <>
-      {/* <Sidebar isActive={isSidebarActive} /> */}
       <div className="left-side-container">
         <div className="left-content">
           <aside className="filter-section xs-hidden">
@@ -54,16 +53,6 @@ export default function JobSection() {
               </div>
 
             </div>
-
-
-
-
-
-
-
-
-
-
 
             <section className="job-description-section">
               <article className="job-card">

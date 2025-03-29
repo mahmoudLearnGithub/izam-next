@@ -1,5 +1,3 @@
-import styles from "../components/jobSection.module.css";
-
 export default function EndpointsSection() {
   return (
     <main className={styles.container}>
