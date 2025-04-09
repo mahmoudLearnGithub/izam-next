@@ -11,10 +11,16 @@ const PORT = process.env.PORT || 8081;
 app.prepare().then(() => {
     const server = express();
 
- 
+    // وضع middleware هنا
+    server.use((req, res, next) => {
+        console.log(`[${req.method}] ${req.url}`);
+        next();
+    });
+
+    // إضافة مسارات API
     server.use('/api', apiRoutes);
 
- 
+    // معالجة كل الطلبات من قبل Next.js
     server.all('*', (req, res) => {
         return handle(req, res);
     });
@@ -23,9 +29,4 @@ app.prepare().then(() => {
         console.log(`🚀 Server running on http://localhost:${PORT}`);
     });
 });
-
-server.use((req, res, next) => {
-    console.log(`[${req.method}] ${req.url}`);
-    next();
-  });
-  
+ 
