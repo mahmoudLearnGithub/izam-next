@@ -1,5 +1,1 @@
-[
-    { "id": 1, "title": "Dashboard", "target": "/" },
-    { "id": 2, "title": "Job Applications", "target": "/applications" }
-  ]
-  
+[{"id":2,"title":"Job Applications","target":"/applications","label":"b"},{"id":1,"title":"Dashboard","target":"/","label":"a"}]

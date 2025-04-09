@@ -23,3 +23,9 @@ app.prepare().then(() => {
         console.log(`🚀 Server running on http://localhost:${PORT}`);
     });
 });
+
+server.use((req, res, next) => {
+    console.log(`[${req.method}] ${req.url}`);
+    next();
+  });
+  

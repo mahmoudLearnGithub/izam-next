@@ -58,48 +58,104 @@ export default function Sidebar() {
   const { isSidebarActive, toggleSidebar } = useContext(SidebarContext);
   const [items, setItems] = useState([]);
 
+  // useEffect(() => {
+  //   const storedItems = localStorage.getItem("sidebarItems");
+  //   if (storedItems) {
+  //     setItems(JSON.parse(storedItems));
+  //   } else {
+  //     setItems([
+  //       { id: 1, label: "Dashboard" },
+  //       { id: 2, label: "Application" },
+  //       { id: 3, label: "Qualifications" },
+  //       { id: 4, label: "About" },
+  //       { id: 5, label: "Contact" },
+  //     ]);
+  //   }
+  // }, []);
   useEffect(() => {
-    const storedItems = localStorage.getItem("sidebarItems");
-    if (storedItems) {
-      setItems(JSON.parse(storedItems));
-    } else {
-      setItems([
-        { id: 1, label: "Dashboard" },
-        { id: 2, label: "Application" },
-        { id: 3, label: "Qualifications" },
-        { id: 4, label: "About" },
-        { id: 5, label: "Contact" },
-      ]);
-    }
+    const fetchNav = async () => {
+      try {
+        const res = await fetch('/api/nav');
+        const data = await res.json();
+        setItems(data);
+      } catch (error) {
+        console.error('Error fetching nav:', error);
+      }
+    };
+  
+    fetchNav();
   }, []);
+  
 
-  const moveItem = (fromIndex, toIndex) => {
+  // const moveItem = (fromIndex, toIndex) => {
+  //   setItems((prevItems) => {
+  //     const updatedItems = [...prevItems];
+  //     const [movedItem] = updatedItems.splice(fromIndex, 1);
+  //     updatedItems.splice(toIndex, 0, movedItem);
+  //     return updatedItems;
+  //   });
+  // };
+  const moveItem = async (fromIndex, toIndex) => {
     setItems((prevItems) => {
       const updatedItems = [...prevItems];
       const [movedItem] = updatedItems.splice(fromIndex, 1);
       updatedItems.splice(toIndex, 0, movedItem);
+  
+      fetch('/api/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: movedItem.id,
+          from: fromIndex,
+          to: toIndex,
+        }),
+      }).catch((err) => console.error('Tracking error:', err));
+  
       return updatedItems;
     });
   };
-
+  
   const updateLabel = (index, newLabel) => {
     setItems((prevItems) =>
       prevItems.map((item, i) => (i === index ? { ...item, label: newLabel } : item))
     );
   };
 
-  const saveChanges = () => {
-    localStorage.setItem("sidebarItems", JSON.stringify(items));
-    setItems([...items]);
-  };
-
-  const discardChanges = () => {
-    const storedItems = localStorage.getItem("sidebarItems");
-    if (storedItems) {
-      setItems(JSON.parse(storedItems));
+  // const saveChanges = () => {
+  //   localStorage.setItem("sidebarItems", JSON.stringify(items));
+  //   setItems([...items]);
+  // };
+  const saveChanges = async () => {
+    try {
+      const res = await fetch('/api/nav', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(items),
+      });
+      if (!res.ok) throw new Error('Failed to save nav');
+      const saved = await res.json();
+      setItems(saved);
+    } catch (error) {
+      console.error('Save nav error:', error);
     }
   };
-
+  
+  // const discardChanges = () => {
+  //   const storedItems = localStorage.getItem("sidebarItems");
+  //   if (storedItems) {
+  //     setItems(JSON.parse(storedItems));
+  //   }
+  // };
+  const discardChanges = async () => {
+    try {
+      const res = await fetch('/api/nav');
+      const data = await res.json();
+      setItems(data);
+    } catch (error) {
+      console.error('Error discarding changes:', error);
+    }
+  };
+  
   return (
     <>
       <Script src="/scripts.js" strategy="afterInteractive" />
