@@ -1,1 +1,1 @@
-[{"id":2,"title":"Job Applications","target":"/applications","label":"b"},{"id":1,"title":"Dashboard","target":"/","label":"a"}]
+[{"id":2,"label":"Application"},{"id":1,"label":"Dashboard"},{"id":3,"label":"Qualifications"},{"id":4,"label":"About"},{"id":5,"label":"Contact"}]
